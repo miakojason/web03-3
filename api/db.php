@@ -44,7 +44,7 @@ class DB
             $tmp = $this->a2s($id);
             $sql .= join(" && ", $tmp);
         } elseif (is_numeric($id)) {
-            $sql = "`id`='$id'";
+            $sql .= "`id`='$id'";
         } else {
             echo "x type";
         }
