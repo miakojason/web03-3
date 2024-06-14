@@ -76,6 +76,12 @@
             location.reload();
         })
     })
+    // 
+    $(".edit-btn").on('click',function(){
+        let id= $(this).data('id');
+        location.href=`?do=edit_movie&id=${id}`;
+    })
+    // 
     $(".del-btn").on('click', function() {
         let table = 'movie';
         let id = $(this).data('id');
