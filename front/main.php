@@ -1,11 +1,32 @@
 <div class="half" style="vertical-align:top;">
   <h1>預告片介紹</h1>
   <div class="rb tab" style="width:95%;">
-    <div id="abgne-block-20111227">
-      <ul class="lists">
-      </ul>
-      <ul class="controls">
-      </ul>
+    <!-- 海報區 -->
+    <div class="lists">
+      <!-- 單一海報區塊 -->
+      <div class="item">
+        <!-- 海報圖片 -->
+        <div><img src="./img/" alt=""></div>
+        <!-- 預告名稱 -->
+        <div></div>
+      </div>
+    </div>
+    <!-- 按鈕區 -->
+    <div class="controls">
+      <!-- 向左按鈕 -->
+      <div class="left"></div>
+      <!-- 海報按鈕區塊 -->
+      <div class="btns">
+        <!-- 單一按鈕 -->
+        <div class="btn">
+          <!-- 按鈕圖片 -->
+          <div><img src="./img/" alt=""></div>
+          <!-- 預告片名 -->
+          <div></div>
+        </div>
+      </div>
+      <!-- 向右按鈕 -->
+      <div class="right"></div>
     </div>
   </div>
 </div>
@@ -53,8 +74,8 @@
             <div style="font-size:13px;">上映日期:<?= $row['ondate']; ?></div>
           </div>
           <div style="width: 100%;">
-            <button onclick="location.href='?do=intro&id=<?=$row['id'];?>'">劇情介紹</button>
-            <button onclick="location.href='?do=order&id=<?=$row['id'];?>'">線上訂票</button>
+            <button onclick="location.href='?do=intro&id=<?= $row['id']; ?>'">劇情介紹</button>
+            <button onclick="location.href='?do=order&id=<?= $row['id']; ?>'">線上訂票</button>
           </div>
         </div>
       <?php
