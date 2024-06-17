@@ -1,16 +1,18 @@
 <style>
-  .lists{
+  .lists {
     background-color: lightblue;
     position: relative;
     left: 114px;
-    width:200px;
+    width: 200px;
     height: 240px;
     overflow: hidden;
   }
-  .item *{
+
+  .item * {
     box-sizing: border-box;
   }
-  .item{
+
+  .item {
     background-color: lightcoral;
     width: 200px;
     height: 240px;
@@ -19,68 +21,86 @@
     position: absolute;
     display: none;
   }
-  .item div img{
+
+  .item div img {
     width: 100%;
     height: 220px;
   }
-  .item div{
- text-align: center;
+
+  .item div {
+    text-align: center;
   }
-.left,.right{
-  width: 0;
-  border: 20px solid black;
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-}
-.left{
-  border-left-width: 0;
-}
-.right{
-  border-right-width: 0;
-}
-.btns{
-  width: 360px;
-  height: 100px;
-  display: flex;
-  overflow: hidden;
-}
-.btn{
-  background-color: lightblue;
-  font-size: 12px;
-  text-align: center;
-  width:90px;
-  /*flex-shrink:0 讓元在flex排列下保有自己的寬度不會被擠壓 */
-  flex-shrink: 0;
-  position: relative;
-}
-.btn img{
-  background-color: lightcoral;
-  width: 60px;
-  height: 80px;
-}
-.controls{
-  background-color: lightslategray;
-  width: 420px;
-  height: 100px;
-  position: relative;
-  margin-top: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
+
+  .left,
+  .right {
+    width: 0;
+    border: 20px solid black;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+  }
+
+  .left {
+    border-left-width: 0;
+  }
+
+  .right {
+    border-right-width: 0;
+  }
+
+  .btns {
+    width: 360px;
+    height: 100px;
+    display: flex;
+    overflow: hidden;
+  }
+
+  .btn {
+    background-color: lightblue;
+    font-size: 12px;
+    text-align: center;
+    width: 90px;
+    /*flex-shrink:0 讓元在flex排列下保有自己的寬度不會被擠壓 */
+    flex-shrink: 0;
+    position: relative;
+  }
+
+  .btn img {
+    /* background-color: lightcoral; */
+    width: 60px;
+    height: 80px;
+  }
+
+  .controls {
+    background-color: lightslategray;
+    width: 420px;
+    height: 100px;
+    position: relative;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
 </style>
 <div class="half" style="vertical-align:top;">
   <h1>預告片介紹</h1>
   <div class="rb tab" style="width:95%;">
     <!-- 海報區 -->
     <div class="lists">
-      <!-- 單一海報區塊 -->
-      <div class="item">
-        <!-- 海報圖片 -->
-        <div><img src="./img/" alt=""></div>
-        <!-- 預告名稱 -->
-        <div></div>
-      </div>
+      <?php
+      // 取出顯示的資料，並排序
+      $rows = $Poster->all(['sh' => 1], " order by rank");
+      foreach ($rows as $idx => $row) {
+      ?>
+        <!-- 單一海報區塊 -->
+        <div class="item" data-ani="<?= $row['ani']; ?>">
+          <!-- 海報圖片 -->
+          <div><img src="./img/<?= $row['img']; ?>" alt=""></div>
+          <!-- 預告片名稱 -->
+          <div></div>
+        </div>
+      <?php
+      }
+      ?>
     </div>
     <!-- 按鈕區 -->
     <div class="controls">
@@ -88,13 +108,19 @@
       <div class="left"></div>
       <!-- 海報按鈕區塊 -->
       <div class="btns">
-        <!-- 單一按鈕 -->
-        <div class="btn">
-          <!-- 按鈕圖片 -->
-          <div><img src="./img/" alt=""></div>
-          <!-- 預告片名 -->
-          <div></div>
-        </div>
+        <?php
+        foreach ($rows as $idx => $row) {
+        ?>
+          <!-- 單一按鈕 -->
+          <div class="btn">
+            <!-- 按鈕圖片 -->
+            <div><img src="./img/<?= $row['img']; ?>" alt=""></div>
+            <!-- 預告片名 -->
+            <div><?= $row['name']; ?></div>
+          </div>
+        <?php
+        }
+        ?>
       </div>
       <!-- 向右按鈕 -->
       <div class="right"></div>
