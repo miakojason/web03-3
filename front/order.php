@@ -15,7 +15,7 @@
         </div>
     </div>
     <div>
-        <button>確定</button>
+        <button onclick="booking()">確定</button>
         <button>重置</button>
     </div>
 </div>
@@ -27,13 +27,13 @@
 <script>
     let url = new URL(window.location.href);
     getMovies();
-    $("#movie").on("change",function(){
+    $("#movie").on("change", function() {
         //老師step-16這邊有設陷阱
         getDates($("#movie").val())
     })
-    $("#date").on("change",function(){
-          //老師step-16這邊有設陷阱
-        getSessions($("#movie").val(),$("#date").val())
+    $("#date").on("change", function() {
+        //老師step-16這邊有設陷阱
+        getSessions($("#movie").val(), $("#date").val())
     })
 
     function getMovies() {
@@ -67,4 +67,16 @@
         })
     }
 
+    function booking() {
+        let order = {
+            movie_id: $("#movie").val(),
+            date: $("#date").val(),
+            session: $("#session").val()
+        }
+        $.get("./api/booking.php",order,(booking)=>{
+            $("#booking").html(booking);
+            $("#select").hide();
+            $("#booking").show();
+        })
+    }
 </script>
