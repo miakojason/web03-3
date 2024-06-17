@@ -1,3 +1,74 @@
+<style>
+  .lists{
+    background-color: lightblue;
+    position: relative;
+    left: 114px;
+    width:200px;
+    height: 240px;
+    overflow: hidden;
+  }
+  .item *{
+    box-sizing: border-box;
+  }
+  .item{
+    background-color: lightcoral;
+    width: 200px;
+    height: 240px;
+    margin: auto;
+    box-sizing: border-box;
+    position: absolute;
+    display: none;
+  }
+  .item div img{
+    width: 100%;
+    height: 220px;
+  }
+  .item div{
+ text-align: center;
+  }
+.left,.right{
+  width: 0;
+  border: 20px solid black;
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+}
+.left{
+  border-left-width: 0;
+}
+.right{
+  border-right-width: 0;
+}
+.btns{
+  width: 360px;
+  height: 100px;
+  display: flex;
+  overflow: hidden;
+}
+.btn{
+  background-color: lightblue;
+  font-size: 12px;
+  text-align: center;
+  width:90px;
+  /*flex-shrink:0 讓元在flex排列下保有自己的寬度不會被擠壓 */
+  flex-shrink: 0;
+  position: relative;
+}
+.btn img{
+  background-color: lightcoral;
+  width: 60px;
+  height: 80px;
+}
+.controls{
+  background-color: lightslategray;
+  width: 420px;
+  height: 100px;
+  position: relative;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+</style>
 <div class="half" style="vertical-align:top;">
   <h1>預告片介紹</h1>
   <div class="rb tab" style="width:95%;">
