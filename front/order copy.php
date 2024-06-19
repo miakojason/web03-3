@@ -1,4 +1,4 @@
-<div id="select" class="ct">
+<div id="select">
     <h3 class="ct">線上訂票</h3>
     <div class="order">
         <div>
@@ -10,39 +10,38 @@
             <select name="date" id="date"></select>
         </div>
         <div>
-            <label>場次:</label>
+            <label>場次</label>
             <select name="session" id="session"></select>
         </div>
-    </div>
-    <div>
-        <button onclick="booking()">確定</button>
-        <button>重置</button>
+        <div>
+            <button onclick="booking()">確定</button>
+            <button>重置</button>
+        </div>
     </div>
 </div>
 
-<div id="booking" style="display: none;">
+<div id="booking" style="display:none;">
 
 </div>
 <script>
     let url = new URL(window.location.href);
     getMovies();
     $("#movie").on("change", function() {
-        //老師step-16這邊有設陷阱
         getDates($("#movie").val())
     })
     $("#date").on("change", function() {
-        //老師step-16這邊有設陷阱
         getSessions($("#movie").val(), $("#date").val())
     })
 
     function getMovies() {
         $.get("./api/get_movies.php", (movies) => {
             $("#movie").html(movies);
-            // has=isset,get=取得x值
             if (url.searchParams.has('id')) {
-                $(`#movie option[value='${url.searchParams.get('id')}']`).prop('selected', true)
+                $(`#movie option[value='${url.searchParams.get('id')}']`).prop('selected', true);
             }
-            getDates($("#movie").val())
+            // let id = $("#movie").val();
+            // getDates(id);
+            getDates($("#movie").val());
         })
     }
 
@@ -50,10 +49,10 @@
         $.get("./api/get_dates.php", {
             id
         }, (dates) => {
-            $("#date").html(dates)
-            let movie = $("#movie").val()
-            let date = $("#date").val()
-            getSessions(movie, date)
+            $("#date").html(dates);
+            let movie = $("#movie").val();
+            let date = $("#date").val();
+            getSessions(movie, date);
         })
     }
 
@@ -68,14 +67,15 @@
 
     function booking() {
         let order = {
-            movie_id: $("#movie").val(),
-            date: $("#date").val(),
-            session: $("#session").val()
+            movie_id: $('#movie').val(),
+            date: $('#date').val(),
+            session: $('#session').val(),
         }
         $.get("./api/booking.php", order, (booking) => {
-            $("#booking").html(booking);
-            $("#select").hide();
-            $("#booking").show();
+            $('#booking').html(booking);
+            $('#select').hide();
+            $('#booking').show();
         })
+
     }
 </script>
