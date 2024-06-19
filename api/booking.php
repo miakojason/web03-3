@@ -94,9 +94,9 @@ foreach ($ords as $ord) {
         // prop檢查checked當前狀態是true,false，被勾選或無。
         if ($(this).prop('checked')) {
             if (seats.length + 1 <= 4) {
-                seats.push($(this).val());
+                seats.push($(this).val())
             } else {
-                $(this).prop('checked', false);
+                $(this).prop('checked', false)
                 alert("每個人只能勾選四張票")
             }
         } else {
