@@ -19,16 +19,19 @@
     .item div {
         width: calc(100%/7);
     }
+
     .header {
         display: flex;
         justify-content: space-between;
     }
-    .lists{
+
+    .lists {
         height: 330px;
-        width:100%;
+        width: 100%;
         overflow: auto;
     }
-    .item{
+
+    .item {
         width: 100%;
         display: flex;
     }
@@ -62,9 +65,34 @@
                 }
                 ?>
             </div>
-            <div onclick="del(<?=$order['id'];?>)">刪除</div>
+            <button onclick="del(<?= $order['id']; ?>)">刪除</button>
         </div>
     <?php
     }
     ?>
 </div>
+<script>
+    function del(id) {
+        $.post("./api/del.php", {
+            table: 'orders',
+            id
+        }, () => {
+            location.reload();
+        })
+    }
+
+    function qdel() {
+        let type = $("input[name='type']:checked").val()
+        let val = $("#" + type).val()
+        let chk = confirm(`您確定要刪除${type}為${val}的所有資料嗎?`)
+        // 如果確定傳true就會執行刪除，取消flase就沒有
+        if (chk) {
+            $.post("./api/qdel.php", {
+                type,
+                val
+            }, () => {
+                location.reload();
+            })
+        }
+    }
+</script>
